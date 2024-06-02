@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import storyContainer from '@/components/features/stories/storyContainer.vue'
   import pagination from '@/components/shared/pagination.vue'
+  import type { StoryType as StoryEnum } from '@/types/types'
   import { StoryType } from '@/types/types'
 
   definePageMeta({
@@ -26,13 +27,13 @@
     loading.value = false
   }, {})
 
-  const updateType = (category) => {
+  const updateType = (category: StoryEnum) => {
     type.value = category
   }
 </script>
 <template>
   <div v-if="error">some error...</div>
-  <div v-if="!error">
+  <div v-else class="pb-20">
     <storyContainer
       :stories="stories"
       :total="total"

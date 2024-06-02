@@ -17,6 +17,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/eslint',
     'nuxt-mdi',
+    "@nuxt/image"
   ],
   shadcn: {
     /**

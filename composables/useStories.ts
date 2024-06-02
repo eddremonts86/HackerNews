@@ -1,9 +1,14 @@
-import { getStoryById, getTopStories } from '@/services/storyApi'
+import {
+  getStoryById,
+  getStoryCommentsById,
+  getTopStories,
+} from '@/services/storyApi'
 import type { Story } from '@/types/types'
 
 export const useStories = async () => {
   const story = ref({} as Story)
   const stories = ref([] as Story[])
+  const comments = ref([] as Story[])
   const storiesByPage = ref([] as number[][])
   const pages = ref(1)
   const total = ref(0)
@@ -39,15 +44,25 @@ export const useStories = async () => {
 
   const getStory = async (page: number) => {
     try {
-      loading.value = true
       const allStories = storiesByPage.value[page - 1].map((id) =>
         getStoryById(id)
       )
       const storiesFetched = await Promise.all(allStories)
       stories.value = storySortBy(storiesFetched)
-      loading.value = false
     } catch (error) {
       console.log(error)
+    }
+  }
+
+  const getStoryComments = async (page: number, kids: number[]) => {
+    try {
+      const kidsByPage = kids.slice(page * 10, (page + 1) * 10)
+      const allComments = kidsByPage.map(
+        async (id) => await getStoryCommentsById(id)
+      )
+      comments.value = await Promise.all(allComments)
+    } catch (error) {
+      console.error(error)
     }
   }
 
@@ -61,5 +76,7 @@ export const useStories = async () => {
     getStory,
     topStories,
     storyById,
+    comments,
+    getStoryComments,
   }
 }

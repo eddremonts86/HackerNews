@@ -1,6 +1,5 @@
 <script lang="ts" setup>
   import { Badge } from '@/components/ui/badge'
-  import { MoreHorizontal } from 'lucide-vue-next'
   import {
     Table,
     TableBody,
@@ -9,8 +8,9 @@
     TableHeader,
     TableRow,
   } from '@/components/ui/table'
-  import type { Story } from '@/types/types'
   import { useUseValidateDate } from '@/composables/useValidateDate'
+  import type { Story } from '@/types/types'
+  import { MoreHorizontal } from 'lucide-vue-next'
 
   defineProps({
     stories: {
@@ -56,7 +56,7 @@
           <p class="text-xs text-gray-500">Written by: {{ story.by }}</p>
         </TableCell>
         <TableCell>
-          <Badge variant="outline">
+          <Badge variant="outline" class="bg-violet-950 text-white">
             {{ story.type }}
           </Badge>
         </TableCell>

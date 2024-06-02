@@ -5,7 +5,14 @@ export const getTopStories = async () => {
   return await response.json()
 }
 
-export const getStoryById= async (id: number) => {
+export const getStoryById = async (id: number) => {
+  const response = await fetch(
+    `https://hacker-news.firebaseio.com/v0/item/${id}.json`
+  )
+  return await response.json()
+}
+
+export const getStoryCommentsById = async (id: number) => {
   const response = await fetch(
     `https://hacker-news.firebaseio.com/v0/item/${id}.json`
   )

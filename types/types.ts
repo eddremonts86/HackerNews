@@ -3,6 +3,13 @@ export interface NavBarItem {
   link: string
 }
 
+export enum StoryType {
+  story = 'story',
+  comment = 'comment',
+  poll = 'poll',
+  job = 'job',
+}
+
 export interface Story {
   id: number
   deleted: boolean
@@ -21,9 +28,15 @@ export interface Story {
   descendants: number
 }
 
-export enum StoryType{
-    story = "story",
-    comment = "comment",
-    poll = "poll",
-    job = "job"
+export interface StoryCard {
+  title: string
+  text: string
+  type: string
+  by: string
+  time: string
+  id: number
+  image: string
+  descendants: number
+  score: number
+  fullText: string
 }

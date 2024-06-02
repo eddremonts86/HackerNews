@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import storyCards from '@/components/features/stories/storyCards.vue'
+  import storyTable from '@/components/features/stories/storyTable.vue'
   import {
     Card,
     CardContent,
@@ -8,14 +10,6 @@
     CardTitle,
   } from '@/components/ui/card'
   import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-  } from '@/components/ui/dropdown-menu'
-  import {
     Tabs,
     TabsContent,
     TabsList,
@@ -24,8 +18,7 @@
   import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
   import type { Story } from '@/types/types'
   import { StoryType } from '@/types/types'
-  import storyTable from '@/components/features/stories/storyTable.vue'
-  import storyCards from '@/components/features/stories/storyCards.vue'
+  import { UppercaseFirstLetter } from '@/utils/StringsTools'
   defineProps({
     stories: {
       type: Array as PropType<Story[]>,
@@ -40,7 +33,7 @@
       required: true,
     },
   })
-  defineEmits(['update:type'])
+  const emits = defineEmits(['update:type'])
   const viewType = [
     {
       icon: 'mdiFormatListText',
@@ -52,15 +45,15 @@
     },
   ]
   const selectedViewType = ref('card')
-  const setSelectedViewType = (viewType) => {
+  const selectedType = ref('story')
+  const setSelectedViewType = (viewType: string) => {
     if (selectedViewType.value === viewType) {
       return
     }
     selectedViewType.value = viewType
   }
+
   const showTable = computed(() => selectedViewType.value === 'table')
-
-
 </script>
 
 <template>
@@ -69,14 +62,19 @@
       <main class="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
         <Tabs :default-value="StoryType.story">
           <div class="flex items-center">
-            <TabsList>
+            <TabsList :key="selectedType">
               <TabsTrigger
                 v-for="storyType in StoryType"
                 :key="storyType"
                 :value="storyType"
-                @click="() => $emit('update:type', storyType)"
+                class="mx-1 data-[state=active]:bg-violet-950 data-[state=active]:text-white focus-visible:relative focus-visible:shadow-[0_0_0_2px] focus-visible:shadow-black hover:text-white hover:bg-violet-900"
+                @click="
+                  () => {
+                    $emit('update:type', storyType)
+                  }
+                "
               >
-                {{ storyType.toUpperCase() }}
+                {{ UppercaseFirstLetter(storyType) }}
               </TabsTrigger>
             </TabsList>
             <div class="ml-auto flex items-center gap-2">
@@ -101,9 +99,8 @@
               </ToggleGroup>
             </div>
           </div>
-
           <TabsContent :value="StoryType.story">
-            <Card v-if="showTable" >
+            <Card v-if="showTable">
               <CardHeader>
                 <CardTitle class="text-violet-900">Top Stories</CardTitle>
                 <CardDescription>Top stories from Hacker News.</CardDescription>
@@ -127,7 +124,11 @@
                 </div>
               </CardFooter>
             </Card>
-            <storyCards :stories="stories" />
+            <storyCards
+              v-if="!showTable"
+              :stories="stories"
+              :loading="loading"
+            />
           </TabsContent>
           <TabsContent
             v-for="storyType in ['comment', 'poll', 'job']"
