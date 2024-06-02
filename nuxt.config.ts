@@ -16,6 +16,7 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
     '@vueuse/nuxt',
     '@nuxt/eslint',
+    'nuxt-mdi',
   ],
   shadcn: {
     /**

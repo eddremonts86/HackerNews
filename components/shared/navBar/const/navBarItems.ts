@@ -5,8 +5,8 @@ export const navBarItems: NavBarItem[] = [
         link: '/'
     },
     {
-        title: 'About',
-        link: '/about'
+        title: 'Stories',
+        link: '/story'
     },
     {
         title: 'Contact',

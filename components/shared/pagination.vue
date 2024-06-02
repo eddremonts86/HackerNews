@@ -31,9 +31,6 @@
       default: 1,
     },
   })
-
-
-
 </script>
 
 <template>
@@ -46,8 +43,12 @@
     @update:page="($event) => $emit('update:page', $event)"
   >
     <PaginationList v-slot="{ items }" class="flex items-center gap-1">
-      <PaginationFirst />
-      <PaginationPrev />
+      <PaginationFirst
+        class="hover:bg-white/10 hover:text-violet-700 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
+      />
+      <PaginationPrev
+        class="hover:bg-white/10 hover:text-violet-700 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
+      />
 
       <template v-for="(item, index) in items">
         <PaginationListItem
@@ -57,7 +58,7 @@
           as-child
         >
           <Button
-            class="w-10 h-10 p-0"
+            class="w-10 h-10 p-0 bg-white text-black data-[selected]:bg-violet-950 data-[selected]:text-white hover:bg-white/10 hover:text-violet-950 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
             :variant="item.value === page ? 'default' : 'outline'"
           >
             {{ item.value }}
@@ -66,8 +67,12 @@
         <PaginationEllipsis v-else :key="item.type" :index="index" />
       </template>
 
-      <PaginationNext />
-      <PaginationLast />
+      <PaginationNext
+        class="hover:bg-white/10 hover:text-violet-700 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
+      />
+      <PaginationLast
+        class="hover:bg-white/10 hover:text-violet-700 transition focus-within:outline focus-within:outline-1 focus-within:outline-offset-1"
+      />
     </PaginationList>
   </Pagination>
 </template>
