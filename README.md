@@ -1,23 +1,25 @@
-# Nuxt 3 Minimal Starter
+# [Hacker News](https://665df4ad6ca68e1bf8c49c13--hackernews-edd.netlify.app/)
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<div align="center">
+ <img src="screenshot.png" alt="Resights Logo" align="center" width="620px">
+</div>
+
+## Description
+
+[Hacker News](https://665df4ad6ca68e1bf8c49c13--hackernews-edd.netlify.app/) is a popular online platform where technology enthusiasts, developers, entrepreneurs, and other tech-savvy individuals gather to discuss and share the latest news, trends, and insights related to technology, startups, programming, and more. Here's a description of what you can expect on a typical [Hacker News](https://665df4ad6ca68e1bf8c49c13--hackernews-edd.netlify.app/) site.
 
 ## Setup
 
-Make sure to install the dependencies:
+Clone and install the dependencies:
 
 ```bash
-# npm
-npm install
+1) git clone git@github.com:eddremonts86/HackerNews.git
+2) cd HackerNews
+3) pnpm install
 
-# pnpm
-pnpm install
+Or
 
-# yarn
-yarn install
-
-# bun
-bun install
+git clone git@github.com:eddremonts86/HackerNews.git && cd HackerNews && pnpm install
 ```
 
 ## Development Server
@@ -25,17 +27,13 @@ bun install
 Start the development server on `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
 pnpm run dev
+```
 
-# yarn
-yarn dev
+Locally preview production build:
 
-# bun
-bun run dev
+```bash
+pnpm run preview
 ```
 
 ## Production
@@ -43,33 +41,5 @@ bun run dev
 Build the application for production:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
 pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
 ```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
