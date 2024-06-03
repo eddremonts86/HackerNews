@@ -6,7 +6,7 @@ import { UppercaseFirstLetter } from '@/utils/StringsTools'
 export const storyFormatter = (stories: Story[]): StoryCard[] => {
   const { formateUnixDate } = useUseValidateDate()
   const result = stories.map(
-    ({ id, title, text, type, by, time, score, descendants }) => {
+    ({ id, title, text, type, by, time, score, descendants,  url }) => {
       const timeFormatted = formateUnixDate(time)
       const image =
         type === StoryType.comment
@@ -24,6 +24,7 @@ export const storyFormatter = (stories: Story[]): StoryCard[] => {
         image,
         score,
         descendants,
+        url,
         time: timeFormatted,
         text: textFormatted,
         fullText: text,

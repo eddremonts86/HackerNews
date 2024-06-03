@@ -39,4 +39,5 @@ export interface StoryCard {
   descendants: number
   score: number
   fullText: string
+  url: string
 }
