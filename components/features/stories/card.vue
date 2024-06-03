@@ -9,6 +9,7 @@
     CardTitle,
   } from '@/components/ui/card'
   import type { StoryCard } from '@/types/types'
+  import externalLink from '@/components/shared/externalLink.vue'
 
   interface ImageType {
     width: number | string
@@ -89,6 +90,7 @@
         class="flex items-center justify-start pt-6 sm:justify-end sm:py-0"
         v-if="readMore"
       >
+        <externalLink :url="story.url" />
         <NuxtLink
           :to="'/story/' + story.id"
           class="text-violet-900 px-4 py-2 bg-violet-50 rounded-md text-xs hover:bg-violet-100"

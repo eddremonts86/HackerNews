@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import Image from '@/components/shared/Image.vue'
   import { Badge } from '@/components/ui/badge'
+  import externalLink from '@/components/shared/externalLink.vue'
+
   import {
     Card,
     CardContent,
@@ -50,13 +52,14 @@
     <div class="w-full sm:px-6 p-6">
       <CardHeader class="pt-3 pb-6 sm:py-0 sm:my-0">
         <div class="flex items-start justify-between">
-          <div class="text-xs">
+          <div class="text-xs flex justify-start items-center">
             <Badge
               variant="outline"
               class="bg-violet-950 text-white shadow-none"
             >
               {{ story.type }}
             </Badge>
+            <externalLink :url="story.url" />
           </div>
           <div class="text-xs flex flex-col items-end">
             <p>{{ story.time }}</p>
@@ -72,9 +75,7 @@
         </div>
       </CardHeader>
       <CardTitle class="px-6 mb-4 text-lg">
-        <a :href="'/story/' + story.id" class="hover:underline">
-          {{ story.title }}
-        </a>
+        <p>{{ story.title }}</p>
       </CardTitle>
       <CardContent class="py-0">
         <div v-dompurify-html="content" class="text-sm text-slate-700" />
