@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import pagination from '@/components/shared/pagination.vue'
-  import commentsCard from './commentsCard.vue'
+import commentsCard from './commentsCard.vue'
+    import loadingComponents from '~/components/shared/loading.vue'
+
   const INITIAL_PAGE = 1
 
   const { loading, getStoryComments, comments } = await useStories()
@@ -22,7 +24,7 @@
 <template>
   <section class="my-10">
     <div v-if="loading" class="flex justify-center items-center h-96">
-      <p>Loading comments...</p>
+      <loadingComponents />
     </div>
     <div v-if="!loading" class="bg-violet-100 rounded-xl p-4 mb-10">
       <h2 class="text-2xl font-semibold text-violet-950 mb-4">

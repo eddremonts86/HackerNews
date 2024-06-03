@@ -1,6 +1,6 @@
 <script setup>
   import storyCards from '@/components/features/stories/storyCards.vue'
-
+  import loadingComponents from '~/components/shared/loading.vue'
   const { loading, getStory, stories, topStories } = await useStories()
   watchEffect(async () => {
     loading.value = true
@@ -52,7 +52,9 @@
     </div>
   </section>
   <section class="bg-violet-50 md:bg-white w-full h-auto p-20 mb-3">
-    <div v-if="loading">loading...</div>
+    <div v-if="loading">
+      <loadingComponents />
+    </div>
     <div v-else>
       <storyCards :stories="stories" :loading="loading" />
     </div>

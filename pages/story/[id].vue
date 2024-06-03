@@ -2,6 +2,7 @@
   import card from '@/components/features/stories/heroCard.vue'
   import storyCommentsContainer from '@/components/features/stories/storyCommentsContainer.vue'
   import { storyFormatter } from '@/components/features/stories/utils/storyTools'
+  import loadingComponents from '~/components/shared/loading.vue'
 
   const route = useRoute()
   const storiesList = ref({})
@@ -18,7 +19,7 @@
 <template>
   <div class="mt-5">
     <div v-if="loading" class="flex justify-center items-center h-96">
-      <p>Loading...</p>
+      <loadingComponents />
     </div>
     <div v-if="!loading">
       <card :story="storiesList[0]" />

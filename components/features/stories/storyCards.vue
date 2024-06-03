@@ -1,6 +1,8 @@
 <script lang="ts" setup>
   import card from '@/components/features/stories/card.vue'
-  import { storyFormatter } from '@/components/features/stories/utils/storyTools'
+import { storyFormatter } from '@/components/features/stories/utils/storyTools'
+    import loadingComponents from '~/components/shared/loading.vue'
+
   import type { Story } from '@/types/types'
   const props = defineProps({
     stories: {
@@ -17,7 +19,7 @@
 
 <template>
   <div v-if="loading" class="h-96 flex justify-center items-center">
-    <div>loading...</div>
+    <loadingComponents />
   </div>
   <div v-else class="flex flex-col gap-4">
     <div class="flex flex-col gap-2">

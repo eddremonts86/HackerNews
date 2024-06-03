@@ -3,6 +3,8 @@
   import storyCards from '@/components/features/stories/storyCards.vue'
   import storyTable from '@/components/features/stories/storyTable.vue'
   import icons from '@/components/shared/icons.vue'
+  import loadingComponents from '~/components/shared/loading.vue'
+
   import {
     Card,
     CardContent,
@@ -94,7 +96,7 @@
         </CardHeader>
         <CardContent>
           <div v-if="loading" class="flex items-center justify-center h-96">
-            <p>Loading...</p>
+            <loadingComponents />
           </div>
           <storyTable v-else :stories="stories" />
         </CardContent>
