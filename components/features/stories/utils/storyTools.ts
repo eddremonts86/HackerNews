@@ -35,16 +35,16 @@ export const storyFormatter = (stories: Story[]): StoryCard[] => {
 
 const getRandomStoryImages = () => {
   const images = [
-    '/story/1.JPEG',
-    '/story/2.JPEG',
-    '/story/3.JPEG',
-    '/story/4.JPEG',
-    '/story/5.JPEG',
-    '/story/6.JPEG',
-    '/story/7.JPEG',
-    '/story/8.JPEG',
-    '/story/9.JPEG',
-    '/story/10.JPEG',
+    '/story/1.jpeg',
+    '/story/2.jpeg',
+    '/story/3.jpeg',
+    '/story/4.jpeg',
+    '/story/5.jpeg',
+    '/story/6.jpeg',
+    '/story/7.jpeg',
+    '/story/8.jpeg',
+    '/story/9.jpeg',
+    '/story/10.jpeg',
   ]
   return images[Math.floor(Math.random() * images.length)]
 }
