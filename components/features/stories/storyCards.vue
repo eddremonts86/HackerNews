@@ -26,7 +26,7 @@
     </div>
     <div class="grid grid-cols-1 gap-4">
       <div v-for="story in storiesList" :key="story.id">
-        <card :story="story" readMore />
+        <card :story="story" readMore :images="{ width: 32, height: 32 }" />
       </div>
     </div>
   </div>

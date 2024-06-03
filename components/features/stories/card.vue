@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+  import Image from '@/components/shared/Image.vue'
   import { Badge } from '@/components/ui/badge'
   import {
     Card,
@@ -8,6 +9,7 @@
     CardTitle,
   } from '@/components/ui/card'
   import type { StoryCard } from '@/types/types'
+
   interface ImageType {
     width: number | string
     height: number | string
@@ -22,11 +24,11 @@
       default: false,
     },
     images: {
-      type: Object as PropType<ImageType>,
-      default: () => ({
-        width: 56,
-        height: 32,
-      }),
+      type: {} as PropType<ImageType>,
+      default: {
+        width: 100,
+        height: 100,
+      },
     },
   })
 
@@ -36,21 +38,25 @@
 </script>
 
 <template>
-  <card class="flex flex-col p-10 sm:flex-row">
+  <card class="flex flex-col border-0 shadow-none lg:flex-row">
     <div
-      :class="`max-h-${images.height} max-w-${images.width} justify-center items-center mb-10 sm:mb-0 sm:justify-start sm:items-start flex `"
+      :class="`max-h-${images.height} max-w-${images.width} flex justify-center items-center p-6`"
     >
-      <img
+      <Image
         :src="story.image"
-        :alt="story.title"
-        :class="`object-cover rounded-xl w-${images.width} h-${images.height}`"
+        :width="images.width"
+        :height="images.height"
+        :alt="'story_image_' + story.id"
       />
     </div>
-    <div class="w-full sm:px-6">
-      <CardHeader class="pt-0 mt-0">
+    <div class="w-full sm:px-6 p-6">
+      <CardHeader class="pt-3 pb-6 sm:py-0 sm:my-0">
         <div class="flex items-start justify-between">
           <div class="text-xs">
-            <Badge variant="outline" class="bg-violet-950 text-white">
+            <Badge
+              variant="outline"
+              class="bg-violet-950 text-white shadow-none"
+            >
               {{ story.type }}
             </Badge>
           </div>
@@ -72,17 +78,20 @@
           {{ story.title }}
         </a>
       </CardTitle>
-      <CardContent>
+      <CardContent class="py-0">
         <div v-dompurify-html="content" class="text-sm text-slate-700" />
         <div class="mt-4 text-xs">
           Written by
           <strong class="text-violet-950">{{ story.by }}</strong>
         </div>
       </CardContent>
-      <CardFooter class="flex items-center justify-end" v-if="readMore">
+      <CardFooter
+        class="flex items-center justify-start pt-6 sm:justify-end sm:py-0"
+        v-if="readMore"
+      >
         <NuxtLink
           :to="'/story/' + story.id"
-          class="text-violet-900 px-6 py-3 bg-slate-100 rounded-md"
+          class="text-violet-900 px-4 py-2 bg-violet-50 rounded-md text-xs hover:bg-violet-100"
         >
           Read more >>
         </NuxtLink>

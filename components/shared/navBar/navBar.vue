@@ -1,5 +1,6 @@
 <script lang="ts" setup>
   import { navBarItems } from './const/navBarItems'
+
   const menuVisible = ref(false)
   const toggleMenu = () => {
     menuVisible.value = !menuVisible.value
@@ -20,11 +21,7 @@
           >
             <span class="absolute -inset-0.5"></span>
             <span class="sr-only">Open main menu</span>
-            <!--
-            Icon when menu is closed.
 
-            Menu open: "hidden", Menu closed: "block"
-          -->
             <svg
               class="block h-6 w-6"
               fill="none"
@@ -39,11 +36,7 @@
                 d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
               />
             </svg>
-            <!--
-            Icon when menu is open.
 
-            Menu open: "block", Menu closed: "hidden"
-          -->
             <svg
               class="hidden h-6 w-6"
               fill="none"
@@ -64,11 +57,14 @@
           class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
         >
           <div class="flex flex-shrink-0 items-center">
-            <img
-              class="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-              alt="Your Company"
-            />
+            <NuxtLink to="/" class="flex">
+              <img
+                class="h-8 w-auto rounded-sm"
+                src="https://news.ycombinator.com/y18.svg"
+                alt="Your Company"
+              />
+              <p class="text-white px-2 font-bold text-xl">News</p>
+            </NuxtLink>
           </div>
           <div class="hidden sm:ml-6 sm:block">
             <div class="flex space-x-4">
@@ -87,7 +83,6 @@
       </div>
     </div>
 
-    <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" id="mobile-menu">
       <div class="space-y-1 px-2 pb-3 pt-2" v-if="menuVisible">
         <div class="flex-col">
@@ -97,6 +92,7 @@
             :to="item.link"
             class="block hover:bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
             aria-current="page"
+            @click="toggleMenu"
           >
             {{ item.title }}
           </NuxtLink>

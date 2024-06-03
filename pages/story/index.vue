@@ -33,14 +33,14 @@
 </script>
 <template>
   <div v-if="error">some error...</div>
-  <div v-else class="pb-20">
+  <div v-else class="">
     <storyContainer
       :stories="stories"
       :total="total"
       :loading="loading"
       @update:type="updateType"
     />
-    <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center my-10 pb-10">
       <pagination :total="pages" @update:page="getStory($event)" />
     </div>
   </div>

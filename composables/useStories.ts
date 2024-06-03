@@ -4,33 +4,40 @@ import {
   getTopStories,
 } from '@/services/storyApi'
 import type { Story } from '@/types/types'
+const ITEMS_PER_PAGE = 10
 
 export const useStories = async () => {
-  const story = ref({} as Story)
-  const stories = ref([] as Story[])
-  const comments = ref([] as Story[])
-  const storiesByPage = ref([] as number[][])
   const pages = ref(1)
   const total = ref(0)
   const loading = ref(true)
   const error = ref(null)
+  const story = ref({} as Story)
+  const stories = ref([] as Story[])
+  const comments = ref([] as Story[])
+  const storiesByPage = ref([] as number[][])
+
+  const storySortBy = (stories: Story[]) => {
+    return stories.sort((a, b) => b.score - a.score)
+  }
+
+  const createPagination = (list: unknown[]) => {
+    pages.value = Math.ceil(list.length / ITEMS_PER_PAGE)
+    let newList: unknown[] = []
+    for (let i = 0; i < pages.value; i++) {
+      const elements = list.slice(i * ITEMS_PER_PAGE, (i + 1) * ITEMS_PER_PAGE)
+      newList = [...newList, elements]
+    }
+    return newList
+  }
 
   const topStories = async () => {
     try {
       const allStories = await getTopStories()
       total.value = allStories.length
-      pages.value = Math.ceil(allStories.length / 10)
-      for (let i = 0; i < pages.value; i++) {
-        const elements = allStories.slice(i * 10, (i + 1) * 10)
-        storiesByPage.value = [...storiesByPage.value, elements]
-      }
+      storiesByPage.value = createPagination(allStories) as number[][]
     } catch (error) {
       console.error(error)
     }
-  }
-
-  const storySortBy = (stories: Story[]) => {
-    return stories.sort((a, b) => b.score - a.score)
   }
 
   const storyById = async (id: number) => {
@@ -56,9 +63,11 @@ export const useStories = async () => {
 
   const getStoryComments = async (page: number, kids: number[]) => {
     try {
-      const kidsByPage = kids.slice(page * 10, (page + 1) * 10)
-      const allComments = kidsByPage.map(
-        async (id) => await getStoryCommentsById(id)
+      const kidsByPage = createPagination(kids) as number[][]
+      if (!kidsByPage[page - 1]) return []
+
+      const allComments = kidsByPage[page - 1].map(
+        async (id: number) => await getStoryCommentsById(id)
       )
       comments.value = await Promise.all(allComments)
     } catch (error) {

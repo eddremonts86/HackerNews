@@ -99,6 +99,7 @@
               </ToggleGroup>
             </div>
           </div>
+          
           <TabsContent :value="StoryType.story">
             <Card v-if="showTable">
               <CardHeader>
@@ -130,6 +131,7 @@
               :loading="loading"
             />
           </TabsContent>
+
           <TabsContent
             v-for="storyType in ['comment', 'poll', 'job']"
             :value="storyType"

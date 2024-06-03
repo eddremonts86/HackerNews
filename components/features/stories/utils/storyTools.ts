@@ -1,5 +1,6 @@
 import { useUseValidateDate } from '@/composables/useValidateDate'
 import type { Story, StoryCard } from '@/types/types'
+import { StoryType } from '@/types/types'
 import { UppercaseFirstLetter } from '@/utils/StringsTools'
 
 export const storyFormatter = (stories: Story[]): StoryCard[] => {
@@ -7,7 +8,10 @@ export const storyFormatter = (stories: Story[]): StoryCard[] => {
   const result = stories.map(
     ({ id, title, text, type, by, time, score, descendants }) => {
       const timeFormatted = formateUnixDate(time)
-      const image = 'https://source.unsplash.com/random/500x600'
+      const image =
+        type === StoryType.comment
+          ? '/placeholder-comment.png'
+          : getRandomStoryImages()
       const textFormatted = text ? text.slice(0, 250) + '...' : ''
       const typeFormatted = UppercaseFirstLetter(type)
       const byFormatted = UppercaseFirstLetter(by)
@@ -27,4 +31,20 @@ export const storyFormatter = (stories: Story[]): StoryCard[] => {
     }
   )
   return result
+}
+
+const getRandomStoryImages = () => {
+  const images = [
+    '/story/1.JPEG',
+    '/story/2.JPEG',
+    '/story/3.JPEG',
+    '/story/4.JPEG',
+    '/story/5.JPEG',
+    '/story/6.JPEG',
+    '/story/7.JPEG',
+    '/story/8.JPEG',
+    '/story/9.JPEG',
+    '/story/10.JPEG',
+  ]
+  return images[Math.floor(Math.random() * images.length)]
 }
