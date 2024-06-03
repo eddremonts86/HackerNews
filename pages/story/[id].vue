@@ -17,13 +17,11 @@
 </script>
 
 <template>
-  <div class="mt-5">
-    <div v-if="loading" class="flex justify-center items-center h-96">
-      <loadingComponents />
-    </div>
-    <div v-if="!loading">
-      <card :story="storiesList[0]" />
-      <storyCommentsContainer :kids="story.kids" />
-    </div>
+  <div v-if="loading" class="flex justify-center items-center h-96">
+    <loadingComponents />
+  </div>
+  <div v-else>
+    <card :story="storiesList[0]" />
+    <storyCommentsContainer :kids="story.kids" />
   </div>
 </template>

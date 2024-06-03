@@ -11,7 +11,7 @@
 </script>
 
 <template>
-  <section class="bg-white w-full h-auto p-20 mb-3">
+  <section class="bg-white w-full h-auto md:p-20 mb-3 py-10 px-5 rounded-xl">
     <div>
       <h1 class="text-6xl font-bold">Hacker News</h1>
 
@@ -51,7 +51,9 @@
       </div>
     </div>
   </section>
-  <section class="bg-violet-50 md:bg-white w-full h-auto p-20 mb-3">
+  <section
+    class="bg-violet-50 md:bg-white w-full h-auto md:p-20 mb-3 py-10 px-2 rounded-xl"
+  >
     <div v-if="loading">
       <loadingComponents />
     </div>

@@ -90,13 +90,13 @@
         class="flex items-center justify-start pt-6 sm:justify-end sm:py-0"
         v-if="readMore"
       >
-        <externalLink :url="story.url" />
         <NuxtLink
           :to="'/story/' + story.id"
           class="text-violet-900 px-4 py-2 bg-violet-50 rounded-md text-xs hover:bg-violet-100"
         >
-          Read more >>
+          Read more
         </NuxtLink>
+        <externalLink :url="story.url" />
       </CardFooter>
     </div>
   </card>
