@@ -36,7 +36,7 @@ export const useStories = async () => {
       total.value = allStories.length
       storiesByPage.value = createPagination(allStories) as number[][]
     } catch (error) {
-      console.error(error)
+      throw new Error("Couldn't fetch top stories")
     }
   }
 
@@ -45,7 +45,7 @@ export const useStories = async () => {
       const response = await getStoryById(id)
       story.value = response
     } catch (error) {
-      console.error(error)
+      throw new Error("Couldn't fetch story by id")
     }
   }
 
@@ -57,7 +57,7 @@ export const useStories = async () => {
       const storiesFetched = await Promise.all(allStories)
       stories.value = storySortBy(storiesFetched)
     } catch (error) {
-      console.log(error)
+      throw new Error("Couldn't fetch stories")
     }
   }
 
@@ -71,7 +71,7 @@ export const useStories = async () => {
       )
       comments.value = await Promise.all(allComments)
     } catch (error) {
-      console.error(error)
+      throw new Error(" Couldn't fetch comments")
     }
   }
 

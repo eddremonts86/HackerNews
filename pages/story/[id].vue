@@ -1,5 +1,5 @@
 <script setup>
-  import card from '@/components/features/stories/card.vue'
+  import card from '@/components/features/stories/heroCard.vue'
   import storyCommentsContainer from '@/components/features/stories/storyCommentsContainer.vue'
   import { storyFormatter } from '@/components/features/stories/utils/storyTools'
 

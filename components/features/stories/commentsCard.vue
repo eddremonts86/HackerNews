@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-  import { storyFormatter } from '@/components/features/stories/utils/storyTools';
-import type { Story } from '@/types/types';
+  import { storyFormatter } from '@/components/features/stories/utils/storyTools'
+  import type { Story } from '@/types/types'
 
   const readMore = ref(false)
   const props = defineProps<{
@@ -51,7 +51,12 @@ import type { Story } from '@/types/types';
         <div class="mt-6 sm:mt-0">
           <button
             @click="toggleReadMore"
-            class="text-violet-900 px-4 py-2 bg-violet-50 rounded-md text-xs hover:bg-violet-100"
+            :class="{
+              'text-violet-900 px-4 py-2 bg-violet-50 rounded-md text-xs hover:bg-violet-100':
+                !readMore,
+              'px-4 py-2 bg-violet-950 text-white rounded-md text-xs hover:bg-violet-100 hover:text-violet-900':
+                readMore,
+            }"
           >
             {{ readMore ? 'Read less' : 'Read more' }}
           </button>
