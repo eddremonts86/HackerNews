@@ -26,8 +26,8 @@
     images: {
       type: {} as PropType<ImageType>,
       default: {
-        width: 100,
-        height: 100,
+        width: 96,
+        height: 'auto',
       },
     },
   })
