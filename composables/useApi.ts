@@ -11,7 +11,7 @@ export const useFetchApi: useFetchType = (path: string, options: any = {}) => {
       accept: 'application/json',
     },
     onResponseError: (response: unknown) => {
-      console.error(response)
+      throw new Error("Couldn't fetch data")
     },
   }
   return useFetch(path, options)

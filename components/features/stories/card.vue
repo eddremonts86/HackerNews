@@ -38,7 +38,7 @@
 </script>
 
 <template>
-  <card class="flex flex-col border-0 shadow-none lg:flex-row">
+  <card class="flex flex-col border-0 shadow-none md:flex-row">
     <div
       :class="`max-h-${images.height} max-w-${images.width} flex justify-center items-center p-6`"
     >
