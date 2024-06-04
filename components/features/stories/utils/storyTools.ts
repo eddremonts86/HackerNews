@@ -5,32 +5,29 @@ import { UppercaseFirstLetter } from '@/utils/StringsTools'
 
 export const storyFormatter = (stories: Story[]): StoryCard[] => {
   const { formateUnixDate } = useUseValidateDate()
-  const result = stories.map(
-    ({ id, title, text, type, by, time, score, descendants, url }) => {
-      const timeFormatted = formateUnixDate(time)
+  const result = stories
+    .filter((ele) => ele)
+    .map((ele) => {
+      const timeFormatted = formateUnixDate(ele.time)
+      const textFormatted = ele.text ? ele.text.slice(0, 250) + '...' : ''
+      const typeFormatted = UppercaseFirstLetter(ele.type)
+      const byFormatted = UppercaseFirstLetter(ele.by)
       const image =
-        type === StoryType.comment
+        ele.type === StoryType.comment
           ? '/placeholder-comment.png'
           : getRandomStoryImages()
-      const textFormatted = text ? text.slice(0, 250) + '...' : ''
-      const typeFormatted = UppercaseFirstLetter(type)
-      const byFormatted = UppercaseFirstLetter(by)
+
       return {
-        id,
-        title,
+        ...ele,
+        image,
         type: typeFormatted,
         by: byFormatted,
-        image,
-        score,
-        descendants,
-        url,
         time: timeFormatted,
         text: textFormatted,
-        fullText: text,
-      } as StoryCard
-    }
-  )
-  return result
+        fullText: ele.text,
+      }
+    })
+  return result as StoryCard[]
 }
 
 const getRandomStoryImages = () => {

@@ -2,16 +2,17 @@ import { useFetch } from 'nuxt/app'
 type useFetchType = typeof useFetch
 
 export const useFetchApi: useFetchType = (path: string, options: any = {}) => {
-  const appConfig = useAppConfig()
+  const BASE_URL = 'https://hacker-news.firebaseio.com/v0/'
+
   options = {
     ...options,
-    baseURL: appConfig.base_url ?? process.env.BASE_URL,
+    baseURL: BASE_URL,
     headers: options.headers ?? {
       'Content-Type': 'application/json',
       accept: 'application/json',
     },
     onResponseError: (response: unknown) => {
-      throw new Error("Couldn't fetch data")
+      return response
     },
   }
   return useFetch(path, options)

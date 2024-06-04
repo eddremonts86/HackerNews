@@ -4,6 +4,13 @@
   import type { StoryType as StoryEnum } from '@/types/types'
   import { StoryType } from '@/types/types'
 
+  useSeoMeta({
+    title: 'Hacker News - Stories',
+    ogTitle: 'Hacker News - Stories',
+    description: 'Stories page it a collection of stories from Hacker News',
+    ogDescription: 'Stories page it a collection of stories from Hacker News',
+  })
+
   definePageMeta({
     layout: 'default',
   })

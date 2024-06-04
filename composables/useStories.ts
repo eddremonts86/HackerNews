@@ -65,7 +65,6 @@ export const useStories = async () => {
     try {
       const kidsByPage = createPagination(kids) as number[][]
       if (!kidsByPage[page - 1]) return []
-
       const allComments = kidsByPage[page - 1].map(
         async (id: number) => await getStoryCommentsById(id)
       )

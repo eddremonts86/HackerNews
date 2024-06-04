@@ -10,6 +10,14 @@ export default defineNuxtConfig({
       enabled: true,
     },
   },
+
+  app: {
+    head: {
+      charset: 'utf-8',
+      viewport: 'width=device-width, initial-scale=1',
+    },
+  },
+
   css: ['~/assets/css/tailwind.css'],
   modules: [
     '@nuxtjs/tailwindcss',
@@ -17,7 +25,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/eslint',
     'nuxt-mdi',
-    "@nuxt/image"
+    '@nuxt/image',
   ],
   shadcn: {
     /**

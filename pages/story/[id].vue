@@ -5,13 +5,19 @@
   import loadingComponents from '~/components/shared/loading.vue'
 
   const route = useRoute()
-  const storiesList = ref({})
+  const storyFormatted = ref({})
   const { story, loading, storyById } = await useStories()
+
   watchEffect(async () => {
     loading.value = true
-    const storyId = route.params.id
-    await storyById(storyId)
-    storiesList.value = storyFormatter([story.value])
+    await storyById(route.params.id)
+    storyFormatted.value = storyFormatter([story.value])?.at(0)
+    useSeoMeta({
+      title: 'Hacker News' + storyFormatted.value?.title,
+      ogTitle: 'Hacker News' + storyFormatted.value?.title,
+      description: storyFormatted.value?.text,
+      ogDescription: storyFormatted.value?.text,
+    })
     loading.value = false
   }, {})
 </script>
@@ -21,7 +27,7 @@
     <loadingComponents />
   </div>
   <div v-else>
-    <card :story="storiesList[0]" />
-    <storyCommentsContainer :kids="story.kids" />
+    <card :story="storyFormatted" />
+    <storyCommentsContainer :kids="storyFormatted.kids" />
   </div>
 </template>

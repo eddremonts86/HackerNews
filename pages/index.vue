@@ -1,6 +1,16 @@
 <script setup>
   import storyCards from '@/components/features/stories/storyCards.vue'
   import loadingComponents from '~/components/shared/loading.vue'
+
+  useSeoMeta({
+    title: 'Hacker News',
+    ogTitle: 'Hacker News',
+    description:
+      'Hacker News is a social news website focusing on computer science and entrepreneurship.',
+    ogDescription:
+      'Hacker News is a social news website focusing on computer science and entrepreneurship.',
+  })
+
   const { loading, getStory, stories, topStories } = await useStories()
   watchEffect(async () => {
     loading.value = true
