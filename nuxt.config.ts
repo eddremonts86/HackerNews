@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     'nuxt-mdi',
     '@nuxt/image',
+    '@nuxt/test-utils/module',
   ],
   shadcn: {
     /**
