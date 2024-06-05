@@ -1,8 +1,9 @@
 import { useFetch } from 'nuxt/app'
 type useFetchType = typeof useFetch
 
+const BASE_URL = 'https://hacker-news.firebaseio.com/v0/'
+
 export const useFetchApi: useFetchType = (path: string, options: any = {}) => {
-  const BASE_URL = 'https://hacker-news.firebaseio.com/v0/'
 
   options = {
     ...options,

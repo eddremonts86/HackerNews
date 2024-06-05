@@ -2,6 +2,7 @@
   import storyCards from '@/components/features/stories/storyCards.vue'
   import loadingComponents from '~/components/shared/loading.vue'
 
+  const INITIAL_PAGE = 1
   useSeoMeta({
     title: 'Hacker News',
     ogTitle: 'Hacker News',
@@ -15,9 +16,10 @@
   watchEffect(async () => {
     loading.value = true
     await topStories()
-    await getStory(1)
+    await getStory(INITIAL_PAGE)
     loading.value = false
   }, {})
+  
 </script>
 
 <template>

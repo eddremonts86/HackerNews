@@ -1,4 +1,4 @@
-const BASE_URL = 'https://hacker-news.firebaseio.com/v0/'
+
 import { useFetchApi } from '@/composables/useApi'
 import type { Story } from '@/types/types'
 

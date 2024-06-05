@@ -9,7 +9,7 @@
 
   const item = computed(() => {
     const comments = storyFormatter([props.comment])
-    return comments[0]
+    return comments.at(0)
   })
 
   const toggleReadMore = () => {
