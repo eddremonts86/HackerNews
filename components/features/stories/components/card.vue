@@ -9,7 +9,7 @@
     CardTitle,
   } from '@/components/ui/card'
   import type { StoryCard } from '@/types/types'
-  import externalLink from '@/components/shared/externalLink.vue'
+  import externalLink from '~/components/shared/externalLink.vue'
 
   interface ImageType {
     width: number | string

@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import storyContainer from '@/components/features/stories/storyContainer.vue'
   import pagination from '@/components/shared/pagination.vue'
   import type { StoryType as StoryEnum } from '@/types/types'
   import { StoryType } from '@/types/types'
+  import storyContainer from '@/components/features/stories/components/storyContainer.vue'
 
   useSeoMeta({
     title: 'Hacker News - Stories',
@@ -47,7 +47,7 @@
       :loading="loading"
       @update:type="updateType"
     />
-    <div class="flex justify-center items-center my-10 pb-10">
+    <div class="flex items-center justify-center pb-10 my-10">
       <pagination :total="pages" @update:page="getStory($event)" />
     </div>
   </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { viewType } from '@/components/features/stories/const/viewType'
-  import storyCards from '@/components/features/stories/storyCards.vue'
-  import storyTable from '@/components/features/stories/storyTable.vue'
+  import storyCards from '@/components/features/stories/components/storyCards.vue'
+  import storyTable from '@/components/features/stories/components/storyTable.vue'
   import icons from '@/components/shared/icons.vue'
   import loadingComponents from '~/components/shared/loading.vue'
 
@@ -71,7 +71,7 @@
           {{ UppercaseFirstLetter(storyType) }}
         </TabsTrigger>
       </TabsList>
-      <div class="ml-auto flex items-center gap-2">
+      <div class="flex items-center gap-2 ml-auto">
         <ToggleGroup type="single" variant="outline" :key="selectedViewType">
           <ToggleGroupItem
             v-for="(type, index) in viewType"

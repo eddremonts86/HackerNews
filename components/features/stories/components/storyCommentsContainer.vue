@@ -1,7 +1,7 @@
 <script lang="ts" setup>
   import pagination from '@/components/shared/pagination.vue'
-import commentsCard from './commentsCard.vue'
-    import loadingComponents from '~/components/shared/loading.vue'
+  import commentsCard from '@/components/features/stories/components/commentsCard.vue'
+  import loadingComponents from '@/components/shared/loading.vue'
 
   const INITIAL_PAGE = 1
 
@@ -23,17 +23,17 @@ import commentsCard from './commentsCard.vue'
 
 <template>
   <section class="my-10">
-    <div v-if="loading" class="flex justify-center items-center h-96">
+    <div v-if="loading" class="flex items-center justify-center h-96">
       <loadingComponents />
     </div>
-    <div v-if="!loading" class="bg-violet-100 rounded-xl p-4 mb-10">
-      <h2 class="text-2xl font-semibold text-violet-950 mb-4">
+    <div v-if="!loading" class="p-4 mb-10 bg-violet-100 rounded-xl">
+      <h2 class="mb-4 text-2xl font-semibold text-violet-950">
         Comments({{ kids.length }})
       </h2>
       <div v-for="comment in comments" :key="comment.id">
         <commentsCard :comment="comment" class="mb-4" />
       </div>
-      <div class="flex justify-center items-center my-5">
+      <div class="flex items-center justify-center my-5">
         <pagination
           :total="total"
           @update:page="getStoryComments($event, kids)"

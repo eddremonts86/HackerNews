@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-  import card from '@/components/features/stories/card.vue'
-import { storyFormatter } from '@/components/features/stories/utils/storyTools'
-    import loadingComponents from '~/components/shared/loading.vue'
-
   import type { Story } from '@/types/types'
+  import card from '@/components/features/stories/components/card.vue'
+  import { storyFormatter } from '@/components/features/stories/utils/storyTools'
+  import loadingComponents from '@/components/shared/loading.vue'
+
   const props = defineProps({
     stories: {
       type: Array as PropType<Story[]>,
@@ -18,7 +18,7 @@ import { storyFormatter } from '@/components/features/stories/utils/storyTools'
 </script>
 
 <template>
-  <div v-if="loading" class="h-96 flex justify-center items-center">
+  <div v-if="loading" class="flex items-center justify-center h-96">
     <loadingComponents />
   </div>
   <div v-else class="flex flex-col gap-4">

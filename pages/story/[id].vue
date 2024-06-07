@@ -1,8 +1,8 @@
 <script setup>
-  import card from '@/components/features/stories/heroCard.vue'
-  import storyCommentsContainer from '@/components/features/stories/storyCommentsContainer.vue'
   import { storyFormatter } from '@/components/features/stories/utils/storyTools'
-  import loadingComponents from '~/components/shared/loading.vue'
+  import card from '@/components/features/stories/components/heroCard.vue'
+  import storyCommentsContainer from '@/components/features/stories/components/storyCommentsContainer.vue'
+  import loadingComponents from '@/components/shared/loading.vue'
 
   const route = useRoute()
   const storyFormatted = ref({})
@@ -23,7 +23,7 @@
 </script>
 
 <template>
-  <div v-if="loading" class="flex justify-center items-center h-96">
+  <div v-if="loading" class="flex items-center justify-center h-96">
     <loadingComponents />
   </div>
   <div v-else>
